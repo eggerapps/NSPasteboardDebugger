@@ -14,10 +14,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	var window: NSWindow!
 
+	var pbmodel = PasteboardViewModel()
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Create the SwiftUI view that provides the window contents.
-		let contentView = ContentView()
+		let contentView = PasteboardView(model: pbmodel)
 
 		// Create the window and set the content view. 
 		window = NSWindow(
@@ -26,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		    backing: .buffered, defer: false)
 		window.center()
 		window.setFrameAutosaveName("Main Window")
-		window.contentView = NSHostingView(rootView: contentView)
+		window.contentView = PasteboardHostingView(rootView: contentView)
 		window.makeKeyAndOrderFront(nil)
 	}
 

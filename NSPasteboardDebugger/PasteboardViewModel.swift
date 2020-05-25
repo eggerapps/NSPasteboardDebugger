@@ -8,6 +8,11 @@
 
 import AppKit
 
+class PasteboardViewModel: ObservableObject {
+	@Published var pasteboard: Pasteboard = Pasteboard(NSPasteboard.general)
+	@Published var draggingSourceOperationMask: NSDragOperation = []
+}
+
 struct Pasteboard: Identifiable {
 	let id: String
 	let items: [PasteboardItem]
