@@ -52,17 +52,6 @@ struct PasteboardView: View {
 			}.frame(minHeight: 200)
 			Divider()
 			VStack(spacing: 0) {
-//				ZStack(alignment: .leading) {
-//					RoundedRectangle(cornerRadius: 5).fill(Color(NSColor.controlBackgroundColor))
-//					RoundedRectangle(cornerRadius: 5).stroke(Color(NSColor.gridColor))
-//					if pasteboard.items.indices.contains(selectedItemIndex) && pasteboard.items[selectedItemIndex].representations.contains(where: { $0.id == self.selectedType }) {
-//						Text(pasteboard.items[selectedItemIndex].representations.first(where: { $0.id == self.selectedType })!.stringValue)
-//							.font(.custom("Menlo", size: 12))
-//							.multilineTextAlignment(.leading)
-//							.padding(10)
-//							.layoutPriority(2).frame(maxWidth:.infinity, minHeight: 150, alignment: .topLeading)
-//					}
-//				}.frame(maxWidth:.infinity)
 				if pasteboard.items.indices.contains(selectedItemIndex) && pasteboard.items[selectedItemIndex].representations.contains(where: { $0.id == self.selectedType }) {
 					TextField("No String Content", text: .constant(pasteboard.items[selectedItemIndex].representations.first(where: { $0.id == self.selectedType })!.stringValue))
 						.font(.custom("Menlo", size: 11))
@@ -97,38 +86,14 @@ struct PasteboardView: View {
 				}
 			}.padding().frame(maxWidth:.infinity)
 		}
-//		.onDrop(
-//			of: ["public.data"],
-//			delegate: PasteboardCatcher(pasteboard: $pasteboard)
-//		)
     }
 }
 
-struct PasteboardCatcher: DropDelegate {
-	@Binding var pasteboard: Pasteboard
-	
-	func performDrop(info: DropInfo) -> Bool {
-		return false
-	}
-	
-	func validateDrop(info: DropInfo) -> Bool {
-		pasteboard = Pasteboard(NSPasteboard(name: .drag))
-		for provider in info.itemProviders(for: ["public.data"]) {
-			print("provider \(provider): \( provider.registeredTypeIdentifiers)")
-		}
-		return false
-	}
-}
-
-
-
 struct ContentView_Previews: PreviewProvider {
-	
     static var previews: some View {
 		PasteboardView(model: PasteboardViewModel())
     }
 }
-
 
 extension NSDragOperation: CustomDebugStringConvertible {
 	public var debugDescription: String {

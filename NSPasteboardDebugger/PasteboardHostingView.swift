@@ -13,7 +13,10 @@ class PasteboardHostingView: NSHostingView<PasteboardView> {
 	override func viewDidMoveToWindow() {
 		superview?.viewDidMoveToWindow()
 		self.unregisterDraggedTypes()
-		self.registerForDraggedTypes([NSPasteboard.PasteboardType("public.data")])
+		self.registerForDraggedTypes(
+			[NSPasteboard.PasteboardType("public.data")]
+				+ NSFilePromiseReceiver.readableDraggedTypes.map({NSPasteboard.PasteboardType($0)})
+		)
 	}
 	
 	override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
