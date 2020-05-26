@@ -1,5 +1,9 @@
 # NSPasteboardDebugger
 
+Requires macOS 10.15
+
+Download from https://github.com/eggerapps/NSPasteboardDebugger/releases
+
 <img src="https://raw.githubusercontent.com/eggerapps/NSPasteboardDebugger/master/Artwork/screenshot-general.png" width=400>
 
 If you've ever worked on adding copy/paste support to a macOS app, or drag&drop support, you've probably wondered what types you should support.
